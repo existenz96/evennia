@@ -33,7 +33,7 @@ def menu_start_node(caller):
     text = "'Hello there, how can I help you?'"
 
     options = (
-        {"desc": "Hey, do you know what this 'Evennia' thing is all about?", "goto": "info1"},
+        {"desc": "Hey, do you know what this 'Test' thing is all about?", "goto": "info1"},
         {"desc": "What's your name, little NPC?", "goto": "info2"},
     )
 
