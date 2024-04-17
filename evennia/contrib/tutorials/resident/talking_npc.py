@@ -1,3 +1,28 @@
+"""
+Evennia Talkative NPC
+
+Contribution - Griatch 2011, grungies1138, 2016
+
+This is a static NPC object capable of holding a simple menu-driven
+conversation. It's just meant as an example.
+
+Installation:
+
+Create the NPC by creating an object of typeclass `contrib.tutorials.talking_npc.TalkingNPC`,
+For example:
+
+    create/drop John : contrib.tutorials.talking_npc.TalkingNPC
+
+Use `talk` in the same room as the NPC to start a conversation.
+
+If there are many talkative npcs in the same room you will get to
+choose which one's talk command to call (Evennia handles this
+automatically). This use of EvMenu is very simplistic; See EvMenu for
+a lot more complex possibilities.
+
+
+"""
+
 from evennia import CmdSet, DefaultObject, default_cmds
 from evennia.utils.evmenu import EvMenu
 
@@ -8,7 +33,7 @@ def menu_start_node(caller):
     text = "'Hello there, how can I help you?'"
 
     options = (
-        {"desc": "Hey, do you know what this 'Evennia' thing is all about?", "goto": "info1"},
+        {"desc": "Hey, do you know what this 'Test' thing is all about?", "goto": "info1"},
         {"desc": "What's your name, little NPC?", "goto": "info2"},
     )
 
@@ -91,7 +116,7 @@ class CmdTalk(default_cmds.MuxCommand):
         # some other custom NPC class.
         EvMenu(
             self.caller,
-            "evennia.npc.resident.resident",
+            "evennia.contrib.tutorials.talking_npc.talking_npc",
             startnode="menu_start_node",
         )
 
@@ -105,7 +130,7 @@ class TalkingCmdSet(CmdSet):
         self.add(CmdTalk())
 
 
-class Resident(DefaultObject):
+class TalkingNPC(DefaultObject):
     """
     This implements a simple Object using the talk command and using
     the conversation defined above.
